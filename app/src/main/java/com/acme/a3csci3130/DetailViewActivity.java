@@ -10,7 +10,7 @@ public class DetailViewActivity extends Activity {
 
     private EditText nameField, emailField,busnum,name,pb,address,province;
     Contact receivedPersonInfo;
-    private MyApplicationData State;
+    private MyApplicationData appState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class DetailViewActivity extends Activity {
     {
         //TODO: Erase contact functionality
         String uid = receivedPersonInfo.uid;
-        State.firebaseReference.child(uid).removeValue();
+        appState.firebaseReference.child(uid).removeValue();
         finish();;
     }
 }
