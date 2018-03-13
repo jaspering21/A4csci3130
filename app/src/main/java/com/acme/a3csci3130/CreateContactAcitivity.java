@@ -45,15 +45,15 @@ public class CreateContactAcitivity extends Activity {
 
         if(!checkNum(num))
             Toast.makeText(this,"Business not valid",Toast.LENGTH_LONG).show();
-        else if(!checkName(name))
+        if(!checkName(name))
             Toast.makeText(this,"Name is not valid",Toast.LENGTH_LONG).show();
-        else if(!checkPb(pb))
+        if(!checkPb(pb))
             Toast.makeText(this,"Primary Business is not valid",Toast.LENGTH_LONG).show();
-        else if(!checkAddress(address))
+        if(!checkAddress(address))
             Toast.makeText(this,"Address not valid",Toast.LENGTH_LONG).show();
-        else if (!checkProvince(province))
+        if (!checkProvince(province))
             Toast.makeText(this,"Province not valid",Toast.LENGTH_LONG).show();
-        else {
+        if(checkNum(num)&&checkName(name)&&checkPb(pb)&&checkAddress(address)&&checkProvince(province)) {
             Contact person = new Contact(personID, name, num, pb, address, province);
             appState.firebaseReference.child(personID).setValue(person);
         }
