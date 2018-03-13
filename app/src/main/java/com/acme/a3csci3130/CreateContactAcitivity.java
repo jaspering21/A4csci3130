@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,25 +37,61 @@ public class CreateContactAcitivity extends Activity {
     public void submitInfoButton(View v) {
         //each entry needs a unique ID
         String personID = appState.firebaseReference.push().getKey();
-        String name = nameField.getText().toString();
-        Integer num = busnum.getText().length();
-        String address =addressField.getText().toString();
-        boolean pass=true;
-        if(!provincearray.contains(provinceField.getText())) {
-            pbField.setText("Primary Business is not valid");
-            pass = false;
-        }
-        if (!pbarray.contains(pbField.getText())) {
-            pbField.setText("Province is not valid");
-            pass=false;
-        }
 
-        if(pass=true) {
-            String pb = pbField.getText().toString();
-            String province = provinceField.getText().toString();
+        String name = nameField.getText().toString();
+        String num = busnum.getText().toString();
+        String address =addressField.getText().toString();
+        String pb = pbField.getText().toString();
+        String province = provinceField.getText().toString();
+
+        if(!checkNum(num))
+            Toast.makeText(this,"Business not valid",Toast.LENGTH_LONG).show();
+        if(!checkName(name))
+            Toast.makeText(this,"Name is not valid",Toast.LENGTH_LONG).show();
+        if(!checkPb(pb))
+            Toast.makeText(this,"Primary Business is not valid",Toast.LENGTH_LONG).show();
+        if(!checkAddress(address))
+            Toast.makeText(this,"Address not valid",Toast.LENGTH_LONG).show();
+        if (!checkProvince(province))
+            Toast.makeText(this,"Province not valid",Toast.LENGTH_LONG).show();
+        else {
             Contact person = new Contact(personID, name, num, pb, address, province);
             appState.firebaseReference.child(personID).setValue(person);
         }
         finish();
+    }
+
+    public boolean checkNum(String num){
+        boolean pass=true;
+        if(num.length()!=9)
+            pass=false;
+        return pass;
+    }
+    public boolean checkName(String name){
+        boolean pass=true;
+        if (name.length()<2||name.length()>49)
+            pass=false;
+        return pass;
+    }
+
+    public boolean checkPb(String pb){
+        boolean pass=true;
+        if(!pbarray.contains(pb))
+            pass=false;
+        return pass;
+    }
+
+    public boolean checkAddress(String address) {
+        boolean pass=true;
+        if(address.length()>50)
+            pass=false;
+        return pass;
+    }
+
+    public boolean checkProvince(String province) {
+        boolean pass=true;
+        if(!provincearray.contains(province))
+            pass=false;
+        return pass;
     }
 }

@@ -21,7 +21,7 @@ public class Contact implements Serializable {
     @Size(min=2,max = 48)
     public  String name;
     @Size(min = 9,max = 9)
-    public  int num;
+    public  String num;
     public  String pb;
     @Size(min = 0,max=49)
     public  String address;
@@ -31,7 +31,7 @@ public class Contact implements Serializable {
         // Default constructor required for calls to DataSnapshot.getValue
     }
 
-    public Contact(String uid, String name,Integer num,String pb,String address,String province){
+    public Contact(String uid, String name,String num,String pb,String address,String province){
         this.uid = uid;
         this.name = name;
         this.num = num;
