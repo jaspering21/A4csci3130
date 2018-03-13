@@ -36,7 +36,8 @@ public class DetailViewActivity extends Activity {
     public void updateContact(View v){
         //TODO: Update contact funcionality
         CreateContactAcitivity contact= new CreateContactAcitivity();
-        String personID = appState.firebaseReference.push().getKey();
+        //String personID = appState.firebaseReference.push().getKey();
+        String personID = receivedPersonInfo.uid;
         String name = nameField.getText().toString();
         String num = busnum.getText().toString();
         String address =addressField.getText().toString();
