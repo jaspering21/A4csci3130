@@ -64,5 +64,11 @@ public class MainActivity extends Activity {
         intent.putExtra("Contact", person);
         startActivity(intent);
     }
+    public FirebaseListAdapter<Contact> adapter(){
+        return firebaseAdapter;
+    }
+    public ListView listView(){
+        return contactListView;
+    }
 
 }
