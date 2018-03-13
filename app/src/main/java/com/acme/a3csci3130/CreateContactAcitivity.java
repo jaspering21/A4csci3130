@@ -37,7 +37,6 @@ public class CreateContactAcitivity extends Activity {
     public void submitInfoButton(View v) {
         //each entry needs a unique ID
         String personID = appState.firebaseReference.push().getKey();
-
         String name = nameField.getText().toString();
         String num = busnum.getText().toString();
         String address =addressField.getText().toString();
@@ -46,13 +45,13 @@ public class CreateContactAcitivity extends Activity {
 
         if(!checkNum(num))
             Toast.makeText(this,"Business not valid",Toast.LENGTH_LONG).show();
-        if(!checkName(name))
+        else if(!checkName(name))
             Toast.makeText(this,"Name is not valid",Toast.LENGTH_LONG).show();
-        if(!checkPb(pb))
+        else if(!checkPb(pb))
             Toast.makeText(this,"Primary Business is not valid",Toast.LENGTH_LONG).show();
-        if(!checkAddress(address))
+        else if(!checkAddress(address))
             Toast.makeText(this,"Address not valid",Toast.LENGTH_LONG).show();
-        if (!checkProvince(province))
+        else if (!checkProvince(province))
             Toast.makeText(this,"Province not valid",Toast.LENGTH_LONG).show();
         else {
             Contact person = new Contact(personID, name, num, pb, address, province);
