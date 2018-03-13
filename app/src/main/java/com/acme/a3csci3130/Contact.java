@@ -1,5 +1,8 @@
 package com.acme.a3csci3130;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Size;
+
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -13,19 +16,28 @@ import java.util.Map;
  */
 
 public class Contact implements Serializable {
-
+    @NonNull
     public  String uid;
+    @Size(min=2,max = 48)
     public  String name;
-    public  String email;
+    @Size(min = 9,max = 9)
+    public  int num;
+    public  String pb;
+    @Size(min = 0,max=49)
+    public  String address;
+    public  String province;
 
     public Contact() {
         // Default constructor required for calls to DataSnapshot.getValue
     }
 
-    public Contact(String uid, String name, String email){
+    public Contact(String uid, String name,Integer num,String pb,String address,String province){
         this.uid = uid;
         this.name = name;
-        this.email = email;
+        this.num = num;
+        this.pb = pb;
+        this.address = address;
+        this.province = province;
     }
 
     @Exclude
@@ -33,8 +45,10 @@ public class Contact implements Serializable {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
         result.put("name", name);
-        result.put("email", email);
-
+        result.put("num", num);
+        result.put("pb",pb);
+        result.put("address",address);
+        result.put("province",province);
         return result;
     }
 }
