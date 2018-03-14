@@ -44,15 +44,15 @@ public class CreateContactAcitivity extends Activity {
         String province = provinceField.getText().toString();
 
         if(!checkNum(num))
-            Toast.makeText(this,"Business not valid",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Business not valid",Toast.LENGTH_SHORT).show();
         if(!checkName(name))
-            Toast.makeText(this,"Name is not valid",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Name is not valid",Toast.LENGTH_SHORT).show();
         if(!checkPb(pb))
-            Toast.makeText(this,"Primary Business is not valid",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Primary Business is not valid",Toast.LENGTH_SHORT).show();
         if(!checkAddress(address))
-            Toast.makeText(this,"Address not valid",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Address not valid",Toast.LENGTH_SHORT).show();
         if (!checkProvince(province))
-            Toast.makeText(this,"Province not valid",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Province not valid",Toast.LENGTH_SHORT).show();
         if(checkNum(num)&&checkName(name)&&checkPb(pb)&&checkAddress(address)&&checkProvince(province)) {
             Contact person = new Contact(personID, name, num, pb, address, province);
             appState.firebaseReference.child(personID).setValue(person);
@@ -62,35 +62,40 @@ public class CreateContactAcitivity extends Activity {
 
     public boolean checkNum(String num){
         boolean pass=true;
-        if(num.length()!=9)
-            pass=false;
+        if(num.length()!=9) {
+            pass = false;
+        }
         return pass;
     }
     public boolean checkName(String name){
         boolean pass=true;
-        if (name.length()<2||name.length()>49)
-            pass=false;
+        if (name.length()<2||name.length()>49) {
+            pass = false;
+        }
         return pass;
     }
 
     public boolean checkPb(String pb){
         boolean pass=true;
-        if(!pbarray.contains(pb))
-            pass=false;
+        if(!pbarray.contains(pb)) {
+            pass = false;
+        }
         return pass;
     }
 
     public boolean checkAddress(String address) {
         boolean pass=true;
-        if(address.length()>50)
-            pass=false;
+        if(address.length()>50) {
+            pass = false;
+        }
         return pass;
     }
 
     public boolean checkProvince(String province) {
         boolean pass=true;
-        if(!provincearray.contains(province))
-            pass=false;
+        if(!provincearray.contains(province)) {
+            pass = false;
+        }
         return pass;
     }
 }

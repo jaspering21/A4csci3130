@@ -16,14 +16,14 @@ import java.util.Map;
  */
 
 public class Contact implements Serializable {
-    @NonNull
+    //@NonNull
     public  String uid;
-    @Size(min=2,max = 48)
+    //@Size(min=2,max = 48)
     public  String name;
-    @Size(min = 9,max = 9)
+    //@Size(min = 9,max = 9)
     public  String num;
     public  String pb;
-    @Size(min = 0,max=49)
+    //@Size(min = 0,max=49)
     public  String address;
     public  String province;
 
