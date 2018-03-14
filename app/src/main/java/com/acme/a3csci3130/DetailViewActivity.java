@@ -66,6 +66,6 @@ public class DetailViewActivity extends Activity {
         //TODO: Erase contact functionality
         String uid = receivedPersonInfo.uid;
         appState.firebaseReference.child(uid).removeValue();
-        finish();;
+        finish();
     }
 }
