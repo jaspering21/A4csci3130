@@ -20,7 +20,7 @@ public class DetailViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
         receivedPersonInfo = (Contact)getIntent().getSerializableExtra("Contact");
-
+        appState = ((MyApplicationData)this.getApplicationContext());
         nameField = (EditText) findViewById(R.id.name);
         busnum = (EditText) findViewById(R.id.num);
         pbField = (EditText) findViewById(R.id.pb);
