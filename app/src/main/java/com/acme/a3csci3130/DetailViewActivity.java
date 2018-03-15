@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DetailViewActivity extends Activity {
 
     private EditText nameField, emailField,busnum,pbField,addressField,provinceField;
@@ -56,7 +59,11 @@ public class DetailViewActivity extends Activity {
             Toast.makeText(this,"Province not valid",Toast.LENGTH_LONG).show();
         if(contact.checkNum(num)&&contact.checkName(name)&&contact.checkPb(pb)&&contact.checkAddress(address)&&contact.checkProvince(province)) {
             Contact person = new Contact(personID, name, num, pb, address, province);
-            appState.firebaseReference.child(personID).setValue(person);
+            Map<String, Object> personlist = person.toMap();
+            Map<String, Object> updateList = new HashMap<>();
+            updateList.put(personID, personlist);
+            appState.firebaseReference.updateChildren(updateList);
+            Toast.makeText(appState, "Updated Successfully!",Toast.LENGTH_SHORT).show();
         }
         finish();
     }
